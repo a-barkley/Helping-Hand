@@ -20,7 +20,9 @@ function testAPI(e) {
 $("#searchBtn").on("click",testAPI)
 
 //testGeoAPI()
-
+function currentLocation(){
 navigator.geolocation.getCurrentPosition(function(position) {
     console.log("position", position.coords.latitude, position.coords.longitude);
 })
+}
+$("#locationBtn").on("click",currentLocation)
