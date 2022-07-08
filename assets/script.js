@@ -26,3 +26,4 @@ navigator.geolocation.getCurrentPosition(function(position) {
 })
 }
 $("#locationBtn").on("click",currentLocation)
+
