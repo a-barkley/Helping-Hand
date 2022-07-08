@@ -17,17 +17,10 @@ function testAPI(e) {
 }
 
 
-function testGeoAPI() {
-    fetch("https://cors-anywhere.herokuapp.com/corsdemo=https://www.googleapis.com/geolocation/v1/geolocate?key=" + geoKey)
-    .then(function(response) {
-        console.log(response)
-        response.json().then(function (data) {
-            console.log(data)
-        })
-    })
-}
-
 $("#searchBtn").on("click",testAPI)
 
 //testGeoAPI()
 
+navigator.geolocation.getCurrentPosition(function(position) {
+    console.log("position", position.coords.latitude, position.coords.longitude);
+})
