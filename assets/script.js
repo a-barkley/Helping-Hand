@@ -75,14 +75,14 @@ function displayCards(data) {
 
         // create html elements
         var cardEl = $("<div>");
-        cardEl.addClass("max-w-sm rounded overflow-hidden shadow-lg w-full");
+        cardEl.addClass("max-w-sm rounded overflow-hidden shadow-lg w-full hover:bg-blue-200");
         var cardBodyEl = $("<div>");
         cardBodyEl.addClass("px-6 py-4");
         var cardTitleEl = $("<div>");
         cardTitleEl.addClass("font-bold text-xl mb-2");
         cardTitleEl.text(name);
         var cardURLEl = $("<a>");
-        cardURLEl.addClass("text-gray-700 text-base");
+        cardURLEl.addClass("text-gray-700 hover:text-orange-500 text-base");
         cardURLEl.text(url);
         cardURLEl.attr("href", url)
         var cardCategoryEl = $("<p>");
