@@ -54,6 +54,24 @@ function displayCards(data) {
         var category = data[i].category;
         var missionStatement = data[i].missionStatement;
 
+        // create html elements
+        var cardEl = $("<div>");
+        cardEl.addClass("max-w-sm rounded overflow-hidden shadow-lg");
+        var cardBodyEl = $("<div>");
+        cardBodyEl.addClass("px-6 py-4");
+        var cardTitleEl = $("<div>");
+        cardTitleEl.addClass("font-bold text-xl mb-2");
+        cardTitleEl.text(name);
+        var cardURLEl = $("<p>");
+        cardURLEl.addClass("text-gray-700 text-base");
+        cardURLEl.text(url);
+        var cardCategoryEl = $("<p>");
+        cardCategoryEl.addClass("text-gray-700 text-base");
+        cardCategoryEl.text(category);
+        var cardMSEl = $("<p>");
+        cardMSEl.addClass("text-gray-700 text-base");
+        cardMSEl.text(missionStatement);
+
         
 
     }
