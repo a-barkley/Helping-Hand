@@ -7,9 +7,16 @@ var userInput = $("#search")
 var userLatitude
 var userLongitude
 
+function modal() {
+    swal("Please enter a valid zip code")
+}
 
 function charityAPI(e) {
     e.preventDefault();
+    if (userInput.val() == '') {
+        modal();
+        return;
+    } 
     fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('http://data.orghunter.com/v1/charitysearch?user_key=fbd3cad63742864f43fb09168db55be3&zipCode=' + userInput.val())}`)
     .then(response => {
 	    if (response.ok) return response.json()
@@ -83,3 +90,4 @@ function displayCards(data) {
 
 $("#locationBtn").on("click",currentLocation)
 
+$("#testModal").on("click", modal)
