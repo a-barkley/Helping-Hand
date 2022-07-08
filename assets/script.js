@@ -72,7 +72,10 @@ function displayCards(data) {
         cardMSEl.addClass("text-gray-700 text-base");
         cardMSEl.text(missionStatement);
 
-        
+        // append html elements
+        cardBodyEl.append(cardTitleEl,cardURLEl,cardCategoryEl,cardMSEl);
+        cardEl.append(cardBodyEl);
+        $("#card-wrapper").append(cardEl);
 
     }
 }
