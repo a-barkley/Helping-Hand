@@ -8,7 +8,7 @@ This App was inspired by our desire to better our community. It's intent is to
 
 - #### HTML
 - #### CSS
-- #### JavaScrip
+- #### JavaScript
 - #### TailWind
 
 
