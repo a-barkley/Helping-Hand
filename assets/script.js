@@ -56,7 +56,7 @@ function displayCards(data) {
 
         // create html elements
         var cardEl = $("<div>");
-        cardEl.addClass("max-w-sm rounded overflow-hidden shadow-lg");
+        cardEl.addClass("max-w-sm rounded overflow-hidden shadow-lg w-full");
         var cardBodyEl = $("<div>");
         cardBodyEl.addClass("px-6 py-4");
         var cardTitleEl = $("<div>");
