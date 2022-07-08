@@ -16,16 +16,28 @@ function charityAPI(e) {
     if (userInput.val() == '') {
         modal();
         return;
-    } 
-    fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('http://data.orghunter.com/v1/charitysearch?user_key=fbd3cad63742864f43fb09168db55be3&zipCode=' + userInput.val())}`)
-    .then(response => {
-	    if (response.ok) return response.json()
-	        throw new Error('Network response was not ok.')
-        })
-    .then(function(data){
-        console.log(JSON.parse(data.contents))
-        displayCards(JSON.parse(data.contents).data);
-    });
+    } else if (userInput.val().length != 5) {
+        modal();
+        return;
+    } else if (isNaN(userInput.val())) {
+        modal();
+        return;
+    } else {
+        fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('http://data.orghunter.com/v1/charitysearch?user_key=fbd3cad63742864f43fb09168db55be3&zipCode=' + userInput.val())}`)
+        .then(response => {
+            if (response.ok) return response.json()
+                throw new Error('Network response was not ok.')
+            })
+        .then(function(data){
+            console.log(JSON.parse(data.contents))
+            if (JSON.parse(data.contents).data.length == 0) {
+                modal();
+                return;
+            } else {
+                displayCards(JSON.parse(data.contents).data);
+            }
+        });
+    }
 }
 
 
