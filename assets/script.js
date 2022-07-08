@@ -62,9 +62,10 @@ function displayCards(data) {
         var cardTitleEl = $("<div>");
         cardTitleEl.addClass("font-bold text-xl mb-2");
         cardTitleEl.text(name);
-        var cardURLEl = $("<p>");
+        var cardURLEl = $("<a>");
         cardURLEl.addClass("text-gray-700 text-base");
         cardURLEl.text(url);
+        cardURLEl.attr("href", url)
         var cardCategoryEl = $("<p>");
         cardCategoryEl.addClass("text-gray-700 text-base");
         cardCategoryEl.text(category);
