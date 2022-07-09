@@ -3,7 +3,7 @@ var charityKey = "fbd3cad63742864f43fb09168db55be3"
 var geoKey = "AIzaSyCwQ3_jDoe6wPIx_Ta8yKhGFEcjmfmXtjw"
 
 var userInput = $("#search")
-
+var savedChar = [];
 var userLatitude
 var userLongitude
 
@@ -101,9 +101,21 @@ function displayCards(data) {
         cardEl.append(cardBodyEl);
         $("#card-wrapper").append(cardEl);
 
+        // saves favorite to local storage
+
+    
+
+
+
     }
 }
 
+function saveFav() {
+
+    
+}
+
+
 $("#locationBtn").on("click",currentLocation)
 
-$("#testModal").on("click", modal)
+$(".saveBtn").on("click, ")
