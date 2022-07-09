@@ -118,12 +118,20 @@ function saveFav(e) {
         url: element.siblings().eq(1).text(),
         category: element.siblings().eq(2).text(),
         missionStatement: element.siblings().eq(3).text()
+
     }
-    console.log(charityInfo);
+    console.log("Like button clicked", charityInfo);
+    if (savedChar.includes(charityInfo)){
+        return
+    }
+    savedChar.push(charityInfo);
+    console.log("saved char", savedChar);
+    localStorage.setItem("savedCharity", JSON.stringify(savedChar));
     
 }
 
 
+
 $("#locationBtn").on("click",currentLocation)
 
-$(".saveBtn").on("click, ")
+$("#card-wrapper").on("click", ".saveBtn", saveFav);
