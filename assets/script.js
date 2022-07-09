@@ -7,7 +7,7 @@ var savedChar = [];
 var userLatitude
 var userLongitude
 var einVar
-var streetAddress
+var streetAddress = []
 
 function modal() {
     swal("Please enter a valid zip code")
@@ -37,8 +37,15 @@ function charityAPI(e) {
                 return;
             } else {
                 for (var i = 0; i < JSON.parse(data.contents).data.length; i++) {
-                    var einVar = JSON.parse(data.contents).data[i].ein
+                    einVar = JSON.parse(data.contents).data[i].ein
                     console.log(einVar)
+                    fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('http://data.orghunter.com/v1/charitygeolocation?user_key=fbd3cad63742864f43fb09168db55be3&ein=' + einVar)}`)
+                    .then(function(data) {
+                        console.log(JSON.parse(data.contents))
+                        // store addresses to array
+
+                    
+                    })
                 }
                 
                 displayCards(JSON.parse(data.contents).data);
