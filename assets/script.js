@@ -91,9 +91,13 @@ function displayCards(data) {
         var cardMSEl = $("<p>");
         cardMSEl.addClass("text-gray-700 text-base");
         cardMSEl.text(missionStatement);
+        var cardBtn = $("<button>")
+        cardBtn.addClass("saveBtn px-4 rounded-r-lg bg-orange-300 hover:bg-orange-400 text-gray-800 font-bold p-2 uppercase border-yellow-500 border-t border-b border-r rounded-l-lg")
+        cardBtn.text("Save Charity")
+
 
         // append html elements
-        cardBodyEl.append(cardTitleEl,cardURLEl,cardCategoryEl,cardMSEl);
+        cardBodyEl.append(cardTitleEl,cardURLEl,cardCategoryEl,cardMSEl,cardBtn);
         cardEl.append(cardBodyEl);
         $("#card-wrapper").append(cardEl);
 
