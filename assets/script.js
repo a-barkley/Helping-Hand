@@ -6,6 +6,8 @@ var userInput = $("#search")
 var savedChar = [];
 var userLatitude
 var userLongitude
+var einVar
+var streetAddress
 
 function modal() {
     swal("Please enter a valid zip code")
@@ -34,6 +36,11 @@ function charityAPI(e) {
                 modal();
                 return;
             } else {
+                for (var i = 0; i < JSON.parse(data.contents).data.length; i++) {
+                    var einVar = JSON.parse(data.contents).data[i].ein
+                    console.log(einVar)
+                }
+                
                 displayCards(JSON.parse(data.contents).data);
             }
         });
