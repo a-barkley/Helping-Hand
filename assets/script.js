@@ -110,8 +110,16 @@ function displayCards(data) {
     }
 }
 
-function saveFav() {
-
+function saveFav(e) {
+    var element = $(e.target);
+    console.log(element);
+    var charityInfo = {
+        charityName: element.siblings().eq(0).text(),
+        url: element.siblings().eq(1).text(),
+        category: element.siblings().eq(2).text(),
+        missionStatement: element.siblings().eq(3).text()
+    }
+    console.log(charityInfo);
     
 }
 
