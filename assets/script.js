@@ -144,8 +144,15 @@ function saveFav(e) {
     
 }
 
-
+function orgBtn(){
+var savedOrgStorage = localStorage.getItem("savedCharity")
+var parsedOrgs = JSON.parse(savedOrgStorage)
+console.log(savedOrgStorage, parsedOrgs)
+displayCards(parsedOrgs);
+}
 
 $("#locationBtn").on("click",currentLocation)
 
 $("#card-wrapper").on("click", ".saveBtn", saveFav);
+
+$("#savedOrgs").on("click",orgBtn);
