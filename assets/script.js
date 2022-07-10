@@ -126,21 +126,24 @@ function displayCards(data) {
 }
 
 function saveFav(e) {
+    // grabs current button being clicked
     var element = $(e.target);
-    console.log(element);
+    // grabs the info from the current card and saves to an object
     var charityInfo = {
         charityName: element.siblings().eq(0).text(),
         url: element.siblings().eq(1).text(),
         category: element.siblings().eq(2).text(),
         missionStatement: element.siblings().eq(3).text()
+    }
 
+    // checks that that charity isn't already saved
+    for(var i = 0; i < savedChar.length; i++){
+        if(savedChar[i].charityName === charityInfo.charityName){
+            return;
+        }
     }
-    console.log("Like button clicked", charityInfo);
-    if (savedChar.includes(charityInfo)){
-        return
-    }
+    // pushes to the array and saves that array to local storage
     savedChar.push(charityInfo);
-    console.log("saved char", savedChar);
     localStorage.setItem("savedCharity", JSON.stringify(savedChar));
     
 }
