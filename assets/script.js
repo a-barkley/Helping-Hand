@@ -31,17 +31,19 @@ function charityAPI(e) {
                 throw new Error('Network response was not ok.')
             })
         .then(function(data){
-            console.log(JSON.parse(data.contents))
-            if (JSON.parse(data.contents).data.length == 0) {
+            var charityArray = JSON.parse(data.contents).data;
+            
+            // check if no charities are returned
+            if (charityArray.length == 0) {
                 modal();
                 return;
             } else {
                 // array to store fetches
                 var fetches = [];
                 // looping through all charities
-                for (var i = 0; i < JSON.parse(data.contents).data.length; i++) {
+                for (var i = 0; i < charityArray.length; i++) {
                     // grab ein for each charity
-                    einVar = JSON.parse(data.contents).data[i].ein
+                    einVar = charityArray[i].ein;
 
                     // fetch data and add Promises to the fetches array
                     fetches.push(fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('http://data.orghunter.com/v1/charitygeolocation?user_key=fbd3cad63742864f43fb09168db55be3&ein=' + einVar)}`)
@@ -56,7 +58,7 @@ function charityAPI(e) {
 
                 // once all the fetches in the fetches array are complete, display cards
                 Promise.all(fetches).then(function(){
-                    displayCards(JSON.parse(data.contents).data);
+                    displayCards(charityArray);
                 })
             }
         });
