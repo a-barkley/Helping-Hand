@@ -80,7 +80,9 @@ function currentLocation(e){
 }
 
 function displayCards(data) {
-    console.log(data)
+    // clear out previous searches
+    $("#card-wrapper").empty();
+
     for(var i = 0; i < data.length; i++){
         // get charity data
         var name = data[i].charityName;
@@ -115,12 +117,6 @@ function displayCards(data) {
         cardBodyEl.append(cardTitleEl,cardURLEl,cardCategoryEl,cardMSEl,cardBtn);
         cardEl.append(cardBodyEl);
         $("#card-wrapper").append(cardEl);
-
-        // saves favorite to local storage
-
-    
-
-
 
     }
 }
