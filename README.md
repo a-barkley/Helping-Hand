@@ -1,6 +1,7 @@
 ### Team Ten Epic Project One
 
-This App was inspired by our desire to better our community. It's intent is to
+This App was inspired by our desire to better our community. It's intent is to connect volunteers to nearby charities.
+
 
 
 
@@ -10,6 +11,8 @@ This App was inspired by our desire to better our community. It's intent is to
 - #### CSS
 - #### JavaScript
 - #### TailWind
+
+![logos](./assets/images/LogosHTMLcssJS.png)
 
 
 ### Deployed Site:
