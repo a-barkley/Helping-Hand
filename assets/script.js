@@ -98,6 +98,9 @@ function displayCards(data) {
         var cardTitleEl = $("<div>");
         cardTitleEl.addClass("font-bold text-xl mb-2");
         cardTitleEl.text(name);
+        var cardAddressEl = $("<p>");
+        cardAddressEl.addClass("text-gray-900 text-base");
+        cardAddressEl.text(streetAddress[i] + "address");
         var cardURLEl = $("<a>");
         cardURLEl.addClass("text-gray-700 hover:text-orange-500 text-base");
         cardURLEl.text(url);
@@ -114,7 +117,7 @@ function displayCards(data) {
 
 
         // append html elements
-        cardBodyEl.append(cardTitleEl,cardURLEl,cardCategoryEl,cardMSEl,cardBtn);
+        cardBodyEl.append(cardTitleEl,cardAddressEl,cardURLEl,cardCategoryEl,cardMSEl,cardBtn);
         cardEl.append(cardBodyEl);
         $("#card-wrapper").append(cardEl);
 
