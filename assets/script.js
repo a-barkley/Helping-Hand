@@ -38,16 +38,17 @@ function charityAPI(e) {
             } else {
                 for (var i = 0; i < JSON.parse(data.contents).data.length; i++) {
                     einVar = JSON.parse(data.contents).data[i].ein
-                    console.log(einVar)
                     fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('http://data.orghunter.com/v1/charitygeolocation?user_key=fbd3cad63742864f43fb09168db55be3&ein=' + einVar)}`)
-                    .then(function(data) {
-                        console.log(JSON.parse(data.contents))
-                        // store addresses to array
-
-                    
+                    .then(function(response) {
+                        return response.json()
+                    })
+                    .then(function(data){
+                        var parsedData = JSON.parse(data.contents);
+                        streetAddress.push(parsedData.data.street + " " + parsedData.data.city);
                     })
                 }
-                
+                console.log(streetAddress);
+
                 displayCards(JSON.parse(data.contents).data);
             }
         });
