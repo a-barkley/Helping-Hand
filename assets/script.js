@@ -31,25 +31,35 @@ function charityAPI(e) {
                 throw new Error('Network response was not ok.')
             })
         .then(function(data){
-            console.log(JSON.parse(data.contents))
-            if (JSON.parse(data.contents).data.length == 0) {
+            var charityArray = JSON.parse(data.contents).data;
+            
+            // check if no charities are returned
+            if (charityArray.length == 0) {
                 modal();
                 return;
             } else {
-                for (var i = 0; i < JSON.parse(data.contents).data.length; i++) {
-                    einVar = JSON.parse(data.contents).data[i].ein
-                    fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('http://data.orghunter.com/v1/charitygeolocation?user_key=fbd3cad63742864f43fb09168db55be3&ein=' + einVar)}`)
+                // array to store fetches
+                var fetches = [];
+                // looping through all charities
+                for (var i = 0; i < charityArray.length; i++) {
+                    // grab ein for each charity
+                    einVar = charityArray[i].ein;
+
+                    // fetch data and add Promises to the fetches array
+                    fetches.push(fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('http://data.orghunter.com/v1/charitygeolocation?user_key=fbd3cad63742864f43fb09168db55be3&ein=' + einVar)}`)
                     .then(function(response) {
                         return response.json()
                     })
                     .then(function(data){
                         var parsedData = JSON.parse(data.contents);
                         streetAddress.push(parsedData.data.street + " " + parsedData.data.city);
-                    })
+                    }));
                 }
-                console.log(streetAddress);
 
-                displayCards(JSON.parse(data.contents).data);
+                // once all the fetches in the fetches array are complete, display cards
+                Promise.all(fetches).then(function(){
+                    displayCards(charityArray);
+                })
             }
         });
     }
@@ -98,6 +108,9 @@ function displayCards(data) {
         var cardTitleEl = $("<div>");
         cardTitleEl.addClass("font-bold text-xl mb-2");
         cardTitleEl.text(name);
+        var cardAddressEl = $("<p>");
+        cardAddressEl.addClass("text-gray-900 text-base");
+        cardAddressEl.text(streetAddress[i]);
         var cardURLEl = $("<a>");
         cardURLEl.addClass("text-gray-700 hover:text-orange-500 text-base");
         cardURLEl.text(url);
@@ -114,7 +127,7 @@ function displayCards(data) {
 
 
         // append html elements
-        cardBodyEl.append(cardTitleEl,cardURLEl,cardCategoryEl,cardMSEl,cardBtn);
+        cardBodyEl.append(cardTitleEl,cardAddressEl,cardURLEl,cardCategoryEl,cardMSEl,cardBtn);
         cardEl.append(cardBodyEl);
         $("#card-wrapper").append(cardEl);
 
