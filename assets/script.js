@@ -38,31 +38,38 @@ function charityAPI(e) {
                 modal();
                 return;
             } else {
-                // array to store fetches
-                var fetches = [];
-                // looping through all charities
-                for (var i = 0; i < charityArray.length; i++) {
-                    // grab ein for each charity
-                    einVar = charityArray[i].ein;
-
-                    // fetch data and add Promises to the fetches array
-                    fetches.push(fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('http://data.orghunter.com/v1/charitygeolocation?user_key=fbd3cad63742864f43fb09168db55be3&ein=' + einVar)}`)
-                    .then(function(response) {
-                        return response.json()
-                    })
-                    .then(function(data){
-                        var parsedData = JSON.parse(data.contents);
-                        streetAddress.push(parsedData.data.street + " " + parsedData.data.city);
-                    }));
-                }
-
-                // once all the fetches in the fetches array are complete, display cards
-                Promise.all(fetches).then(function(){
-                    displayCards(charityArray);
-                })
+              fetchAdresses(charityArray);
             }
         });
     }
+}
+
+function fetchAdresses(charityArray) {
+
+      // array to store fetches
+      var fetches = [];
+      // looping through all charities
+      for (var i = 0; i < charityArray.length; i++) {
+          // grab ein for each charity
+          einVar = charityArray[i].ein;
+
+          // fetch data and add Promises to the fetches array
+          fetches.push(fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('http://data.orghunter.com/v1/charitygeolocation?user_key=fbd3cad63742864f43fb09168db55be3&ein=' + einVar)}`)
+          .then(function(response) {
+              return response.json()
+          })
+          .then(function(data){
+              var parsedData = JSON.parse(data.contents);
+              streetAddress.push(parsedData.data.street + " " + parsedData.data.city);
+          }));
+      }
+
+      // once all the fetches in the fetches array are complete, display cards
+      Promise.all(fetches).then(function(){
+          displayCards(charityArray);
+      })
+
+
 }
 
 
