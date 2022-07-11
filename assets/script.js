@@ -55,6 +55,7 @@ function charityAPI(e) {
 }
 
 function fetchAdresses(charityArray) {
+// Empties old street address to hold new Addresses
 streetAddress = []
       // array to store fetches
       var fetches = [];
@@ -85,7 +86,7 @@ streetAddress = []
 
 $("#searchBtn").on("click",charityAPI)
 
-//testGeoAPI()
+//Grabs User Location using the Geolocation Api to display Cordinates
 function currentLocation(e){
     e.preventDefault();
     navigator.geolocation.getCurrentPosition(function(position) {
