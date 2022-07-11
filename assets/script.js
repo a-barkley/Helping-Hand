@@ -55,7 +55,7 @@ function charityAPI(e) {
 }
 
 function fetchAdresses(charityArray) {
-
+streetAddress = []
       // array to store fetches
       var fetches = [];
       // looping through all charities
