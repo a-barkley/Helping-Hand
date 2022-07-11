@@ -162,7 +162,7 @@ function saveFav(e) {
         missionStatement: element.siblings().eq(3).text()
     }
 
-    // checks that that charity isn't already saved
+    // checks that charity isn't already saved
     for(var i = 0; i < savedChar.length; i++){
         if(savedChar[i].charityName === charityInfo.charityName){
             return;
