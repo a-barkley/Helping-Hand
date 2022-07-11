@@ -9,6 +9,16 @@ var userLongitude
 var einVar
 var streetAddress = []
 
+function loadStorage(){
+
+if (localStorage.getItem("savedCharity") != undefined) {
+    savedChar = JSON.parse(localStorage.getItem("savedCharity"))
+}
+
+}
+
+loadStorage();
+
 function modal() {
     swal("Please enter a valid zip code")
 }
