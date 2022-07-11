@@ -55,7 +55,8 @@ function charityAPI(e) {
 }
 
 function fetchAdresses(charityArray) {
-
+// Empties old street address to hold new Addresses
+streetAddress = []
       // array to store fetches
       var fetches = [];
       // looping through all charities
@@ -85,7 +86,7 @@ function fetchAdresses(charityArray) {
 
 $("#searchBtn").on("click",charityAPI)
 
-//testGeoAPI()
+//Grabs User Location using the Geolocation Api to display Cordinates
 function currentLocation(e){
     e.preventDefault();
     navigator.geolocation.getCurrentPosition(function(position) {
@@ -162,7 +163,7 @@ function saveFav(e) {
         missionStatement: element.siblings().eq(3).text()
     }
 
-    // checks that that charity isn't already saved
+    // checks that charity isn't already saved
     for(var i = 0; i < savedChar.length; i++){
         if(savedChar[i].charityName === charityInfo.charityName){
             return;
