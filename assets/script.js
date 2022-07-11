@@ -89,7 +89,7 @@ function currentLocation(e){
             })
         .then(function(data){
             console.log(JSON.parse(data.contents))
-            displayCards(JSON.parse(data.contents).data);
+            fetchAdresses(JSON.parse(data.contents).data);
         });
     })
     
