@@ -1,10 +1,26 @@
 # Helping Hand
 
-This App was inspired by our desire to better our community. Its intent is to connect volunteers to nearby charities.
+### Website Description:
+
+This App was inspired by our desire to better our community. Its intent is to connect volunteers to nearby charities. Based on user input the site will return a list of local charities that includes name, address, website and category.
 
 <br>
 
-### Instructions
+### Deployed Site:
+
+[Deploy-Link](https://pbarkley.github.io/Helping-Hand/)
+
+<br>
+
+### GitHub Repository:
+
+[Helping-Hand](https://github.com/pbarkley/Helping-Hand)
+
+
+<br>
+
+
+### Instructions:
 1. Enter a Valid Zip Code in the Search bar.
 2. Clicking Use my location will display nearby charities based on users location.
 3. Click on Save charity to save the charity for later viewing.
@@ -22,25 +38,53 @@ This App was inspired by our desire to better our community. Its intent is to co
 - #### SweetAlert
 <br>
 
-![logos](./assets/images/LogosHTMLcssJS.png)
+![logos](./assets/images/TechLogos.png)
 
 
-### Deployed Site:
 
-[Deploy-Link](https://pbarkley.github.io/Helping-Hand/)
 <br>
-<br>
-### GitHub Repository:
 
-[Helping-Hand](https://github.com/pbarkley/Helping-Hand)
+
 <br>
-<br>
+
 ### GIF of site in action:
 
 ![Site](./assets/images/Helping%20Hand-.gif)
 
 <br>
 <br>
+
+### Code Snippet of Fetch and Promise.all in action:
+
+```javascript
+
+function fetchAdresses(charityArray) {
+// Empties old street address to hold new Addresses
+streetAddress = []
+      // array to store fetches
+      var fetches = [];
+      // looping through all charities
+      for (var i = 0; i < charityArray.length; i++) {
+          // grab ein for each charity
+          einVar = charityArray[i].ein;
+
+          // fetch data and add Promises to the fetches array
+          fetches.push(fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('http://data.orghunter.com/v1/charitygeolocation?user_key=fbd3cad63742864f43fb09168db55be3&ein=' + einVar)}`)
+          .then(function(response) {
+              return response.json()
+          })
+          .then(function(data){
+              var parsedData = JSON.parse(data.contents);
+              streetAddress.push(parsedData.data.street + " " + parsedData.data.city);
+          }));
+      }
+
+      // once all the fetches in the fetches array are complete, display cards
+      Promise.all(fetches).then(function(){
+          displayCards(charityArray);
+      })
+
+```
 
 
 ### Contact Information:
